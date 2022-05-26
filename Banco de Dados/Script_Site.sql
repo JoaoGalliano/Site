@@ -16,23 +16,24 @@ insert into perfil values
 ---------------------------------------------------------------------------------------------------------------------------------------
 -- TABELA USUÁRIO (USUÁRIO FINAL)
 create table usuario(
-idUsuario int primary key auto_increment,
-nomeUsuario varchar (45),
+id int primary key auto_increment,
+nome varchar (45),
 email varchar(45),
+senha varchar(30),
 fkPerfil int,
 foreign key (fkPerfil) references perfil (idPerfil)
 );
 
              -- INSERT USUARIO
 insert into usuario values
-(null, 'João', 'joao@email.com', 1);
+(null, 'João', 'joao@email.com', 1234, 1);
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 -- TABELA POST (POSTS, SUAS CURTIDAS, COMENTÁRIOS E DATA)
 create table post(
-idPost int primary key auto_increment,
-descpost text,
+id int primary key auto_increment,
 dataPost datetime,
+descPost text,
 statusPost boolean default 0,
 fkUsuario int,
 foreign key (fkUsuario) references usuario(idUsuario)

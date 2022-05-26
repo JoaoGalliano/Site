@@ -1,77 +1,63 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-/* para workbench - local - desenvolvimento */
-CREATE DATABASE acquatec;
+create database site;
+use site;
 
-USE acquatec;
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50)
+----------------------------------------------------------------------------------------------------------------------------------------
+-- TABELA PERFIL (ADMIN E USUARIO)
+create table perfil(
+idPerfil int primary key auto_increment,
+descPerfil varchar(45)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+-- INSERIR PERFIL
+insert into perfil values
+(null, 'Administrador'),
+(null, 'Usuario');
+
+---------------------------------------------------------------------------------------------------------------------------------------
+-- TABELA USUÁRIO (USUÁRIO FINAL)
+create table usuario(
+id int primary key auto_increment,
+nome varchar (45),
+email varchar(45),
+senha varchar(30),
+fkPerfil int,
+foreign key (fkPerfil) references perfil (idPerfil)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
+             -- INSERT USUARIO
+insert into usuario values
+(null, 'João', 'joao@email.com', 1234, 1);
+
+---------------------------------------------------------------------------------------------------------------------------------------
+-- TABELA POST (POSTS, SUAS CURTIDAS, COMENTÁRIOS E DATA)
+create table post(
+id int primary key auto_increment,
+dataPost datetime,
+descPost text,
+statusPost boolean default 0,
+fkUsuario int,
+foreign key (fkUsuario) references usuario(idUsuario)
 );
 
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
+-- INSERIR POST
+insert into post values 
+(null, 'Aqui você tem um espaço para compartilhar com o mundo o que tem de melhor!', now(), null, 1);
+-----------------------------------------------------------------------------------------------------------------------------
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+-- TABELA INTERAÇÃO (STATUS DO POST, DATA, QUEM REAGIU/COMENTOU EM QUAL POST)
+
+create table interacao(
+dataInt int auto_increment,
+fkUsuario int,
+foreign key (fkUsuario) references usuario (idUsuario),
+fkPost int,
+foreign key (fkPost) references post (idPost),
+tipo varchar(20), 
+check(tipo = 'Comentário' or tipo = 'Curtida' or tipo = 'Descurtida'),
+descInt text,
+statusInt boolean default 0,
+primary key (dataInt, fkUsuario, fkPost)
 );
-
-
-/* para sql server - remoto - produção */
-CREATE TABLE usuario (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-);
-
-CREATE TABLE aviso (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
-);
-
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY IDENTITY(1,1),
-	descricao VARCHAR(300)
-);
-
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
-
-CREATE TABLE medida (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
-);
+-- INSERIR INTERAÇÃO 
+----------------------------------------------------------------------------------------
+ select*from usuario join post on idUsuario = fkUsuario;
