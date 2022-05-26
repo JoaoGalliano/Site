@@ -1,12 +1,11 @@
 /* LOGIN */
 
 .banner .container .card {
-    background-color: #e5e5e5;
     height: fit-content;
     width: 400px;
     display: flex;
     flex-direction: column;
-    color: palevioletred;
+    color: rgb(4, 3, 3);
     align-items: center;
     border-radius: 4px;
   }
