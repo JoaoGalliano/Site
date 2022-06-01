@@ -16,7 +16,7 @@ insert into perfil values
 ---------------------------------------------------------------------------------------------------------------------------------------
 -- TABELA USUÁRIO (USUÁRIO FINAL)
 create table usuario(
-idUsuario int primary key auto_increment,
+id int primary key auto_increment,
 nome varchar (45),
 email varchar(45),
 senha varchar(30),
@@ -32,8 +32,9 @@ insert into usuario values
 -- TABELA POST (POSTS, SUAS CURTIDAS, COMENTÁRIOS E DATA)
 create table aviso(
 id int primary key auto_increment,
-descPost text,
+titulo varchar(100),
+descricao text,
 statusPost char default 0,
-fkUsuario int,
-foreign key (fkUsuario) references usuario(idUsuario)
+fk_usuario int,
+foreign key (fk_usuario) references usuario(id)
 );
