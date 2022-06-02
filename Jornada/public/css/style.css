@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Macondo', cursive;
-  }
-  
+  font-weight: 400;
+}
+
 body {
   font-family: 'Macondo', cursive;
   background-image: url(".././assets/imgs/Fundo.jpg");
@@ -16,15 +17,16 @@ body {
 .container {
   max-width: 1100%;
   margin: 0 auto;
-  padding:0 2%;
+  padding: 0 2%;
   display: flex;
   justify-content: center;
 }
 
 header {
-background-color: #d78d1e44;
-padding: 20px 0;
-border-bottom: 4px solid rgb(84, 48, 10);
+  font-size: 20px;
+  background-color: #d78d1e44;
+  padding: 20px 0;
+  border-bottom: 4px solid #8C3503;
 }
 
 header .container {
@@ -32,9 +34,10 @@ header .container {
 }
 
 header a {
+  
   text-decoration: none;
   color: #000000;
-  font-size: 25px;
+  font-size: 30px;
 }
 
 
@@ -47,7 +50,7 @@ header a {
   color: #e3b062;
 }
 
-p{
+p {
   margin-top: 50px;
   font-size: 30px;
 }

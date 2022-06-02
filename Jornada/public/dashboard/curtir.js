@@ -1,0 +1,4 @@
+var curtida = [];
+function curtir(){
+
+}

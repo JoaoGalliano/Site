@@ -1,3 +1,10 @@
-.btn-logout{
+.hello {
+    font-size: 22px;
+    font-weight: 450;
+}
+
+.btn-logout {
     cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
 }

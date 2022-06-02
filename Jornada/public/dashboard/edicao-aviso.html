@@ -10,12 +10,7 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./dashboards.css">
-    <script src="../js/funcoes.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <script src="../js/funcoes.js"></script>    
 </head>
 
 <body onload="validarSessao(), listarInfosDeUm()" style="background-color: #161618;">
@@ -24,36 +19,30 @@
     <div class="janela">
 
 
-        <div class="header-left">
-
-            <h1>AcquaTec</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <header>
+            <div class="container">
+                <a href="../index.html">Nossa Jornada</a>
+                <ul class="navbar">
+                    <a href="../login.html">Login</a>
+                    </li>
+                    <li>
+                        <a href="../cadastro.html">Cadastro</a>
+                    <li>
+                        <a href="../Sobre.html">Sobre</a>
+                    </li>
+                    </li>
+                </ul>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
+        </header>
+    
+        <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+    
+    
+    
+        <div class="btn-logout">
+            <h3 onclick="limparSessao()">Sair</h3>
         </div>
 
         <div class="dash-right">
@@ -81,9 +70,9 @@
                         </label>
                         <br>
                         <label>
-                            Descrição (máximo de 250 caracteres):
+                            Descrição:
                             <br>
-                            <textarea id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            <textarea id="textarea_descricao" maxlength="1000" rows="5"></textarea>
                         </label>
                         <br>
                         <button onclick="editar()">Editar</button>

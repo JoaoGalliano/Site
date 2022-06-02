@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 22px;
+  font-weight: 450;
 }
 
 .dash-right .avisos .container .div-form {
@@ -17,6 +19,7 @@
 
 .dash-right .avisos .container .div-form #form_postagem {
   width: 100%;
+
 }
 
 .dash-right .avisos .div-form label {
@@ -24,26 +27,35 @@
 }
 
 .dash-right .avisos .div-form input {
+  font-size: 20px;
+  font-weight: 500;
   width: 100%;
   border-radius: 5px;
+  background-color: #d9ae798f;
+  border-color: #260401;
+ 
 }
 
 .dash-right .avisos .div-form textarea {
   width: 100%;
   border: 3px solid #a65f21;
-  background-color: white;
+  background-color: #d9ae798f;
   border-radius: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  border-color: #260401;
 }
 
 .dash-right .avisos .div-form button {
   cursor: pointer;
   border: 0;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   padding: 10px 15px;
-  color: #ffffff;
-  background-color: #260401;
+  color: #efcea5;
+  background-color: #8c3503;
   width: 120px;
   margin-bottom: 20px;
 }
@@ -52,10 +64,10 @@
   cursor: pointer;
   border: 0;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   padding: 5px 8px;
-  color: white;
+  color: #efcea5;
   background-color: #8c3503;
   width: 80px;
 }
@@ -67,7 +79,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  border-bottom: 3px solid #a65f21;
+  border-bottom: 5px solid #A65F21;
   padding: 20px;
 }
 
@@ -80,9 +92,10 @@
 }
 
 .div-results .feed-container {
-  background-color: #212124;
+  background-color: #260401;
   border-radius: 5px;
   margin-bottom: 80px;
+  color: #efcea5;
 }
 
 .div-buttons {
