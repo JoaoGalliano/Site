@@ -1,21 +1,39 @@
 var database = require("../database/config");
-
-function listar() {
+function listar(perfil) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
-    var instrucao = `
+    console.log(perfil);
+    var instrucao = '';
+    if (perfil == 1){
+        instrucao = `
         SELECT 
-            a.id AS idAviso,
-            a.titulo,
-            a.descricao,
-            a.fk_usuario,
-            u.id AS idUsuario,
-            u.nome,
-            u.email,
-            u.senha
+        a.id AS idAviso,
+        a.titulo,
+        a.descricao,
+        a.fk_usuario,
+        u.id AS idUsuario,
+        u.nome,
+        u.email,
+        u.senha
         FROM aviso a
-            INNER JOIN usuario u
-                ON a.fk_usuario = u.id;
-    `;
+        INNER JOIN usuario u
+        ON a.fk_usuario = u.id;
+        `;
+    } else {
+        instrucao = `
+        SELECT 
+        a.id AS idAviso,
+        a.titulo,
+        a.descricao,
+        a.fk_usuario,
+        u.id AS idUsuario,
+        u.nome,
+        u.email,
+        u.senha
+        FROM aviso a
+        INNER JOIN usuario u
+        ON a.fk_usuario = u.id where statusPost = 1;
+        `;
+    }
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

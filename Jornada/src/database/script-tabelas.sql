@@ -20,7 +20,7 @@ id int primary key auto_increment,
 nome varchar (45),
 email varchar(45),
 senha varchar(30),
-fkPerfil int,
+fkPerfil int default 2,
 foreign key (fkPerfil) references perfil (idPerfil)
 );
 

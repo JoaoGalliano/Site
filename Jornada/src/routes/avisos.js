@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
     avisoController.testar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/perfil/:idUsuario", function (req, res) {
     avisoController.listar(req, res);
 });
 

@@ -6,7 +6,14 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    var perfil = req.params.idUsuario
+    console.log("Aviso controle: " + perfil)
+
+    if (perfil == undefined) {
+        res.status(400).send("O perfil indefinido!");
+    }
+
+    avisoModel.listar(perfil).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

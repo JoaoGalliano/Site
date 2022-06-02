@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./dashboards.css">
     <link rel="stylesheet" href="../css/Cadastro.css">
     <link rel="stylesheet" href="../css/Login.css">
+    <link rel="stylesheet" href="../css/Mural.css">
     <script src="../js/funcoes.js"></script>
 
 </head>
@@ -18,31 +19,30 @@
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
     <!-- <body onload="validarSessao()"> -->
 
-    <div class="janela">
 
 
-        <!-- <div class="header-left"> -->
-            <header>
-                <div class="container">
-                    <a href="index.html">Nossa Jornada</a>
-                    <ul class="navbar">
-                        <a href="./login.html">Login</a>
-                        </li>
-                        <li>
-                            <a href="./cadastro.html">Cadastro</a>
-                        <li>
-                            <a href="./Sobre.html">Sobre</a>
-                        </li>
-                        </li>
-                    </ul>
-                </div>
-            </header>
+    <!-- <div class="header-left"> -->
+    <header>
+        <div class="container">
+            <a href="../index.html">Nossa Jornada</a>
+            <ul class="navbar">
+                <a href="../login.html">Login</a>
+                </li>
+                <li>
+                    <a href="../cadastro.html">Cadastro</a>
+                <li>
+                    <a href="../Sobre.html">Sobre</a>
+                </li>
+                </li>
+            </ul>
+        </div>
+    </header>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+    <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    </div>
 
-            <!-- 
+    <!-- 
             <div class="btn-nav-white">
                 <a href="cards.html">
                     <h3>Aquários</h3>
@@ -59,46 +59,46 @@
                 <h3>Mural de Avisos</h3>
             </div> -->
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+    <div class="btn-logout">
+        <h3 onclick="limparSessao()">Sair</h3>
+    </div>
 
-        <!-- </div> -->
+    <!-- </div> -->
 
-        <div class="dash-right">
+    <div class="dash-right">
 
-            <div class="avisos">
-                <div class="container">
-                    <h1>Publicar uma história</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
+        <div class="avisos">
+            <div class="container">
+                <h1>Publicar uma história</h1>
+                <div class="div-form">
+                    <form id="form_postagem" method="post" onsubmit="return publicar()">
+                        <label>
+                            Título:
                             <br>
-                            <label>
-                                Descrição
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" rows="5"></textarea>
-                            </label>
+                            <input name="titulo" id="titulo" maxlength="100" type="text">
+                        </label>
+                        <br>
+                        <label>
+                            Descrição
                             <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
+                            <textarea name="descricao" id="textarea_descricao" rows="5"></textarea>
+                        </label>
+                        <br>
+                        <button>Enviar</button>
+                    </form>
+                </div>
+                <div class="div-results">
+                    <div id="feed_container" class="feed-container">
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
+
+
+
+
     </div>
+
 
 
 
@@ -110,6 +110,8 @@
 <script>
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+   var idUsuario = sessionStorage.ID_PERFIL_USUARIO;
+   console.log(idUsuario)
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -184,7 +186,15 @@
 
     function atualizarFeed() {
         //aguardar();
-        fetch("/avisos/listar").then(function (resposta) {
+        fetch(`/avisos/listar/perfil/${idUsuario}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("antes do primeiro if");
+           
+
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -192,7 +202,9 @@
                     mensagem.innerHTML = "Nenhum resultado encontrado."
                     feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
+                    console.log("dentro do 1 if")
                 }
+                console.log("depois do primeiro if");
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));

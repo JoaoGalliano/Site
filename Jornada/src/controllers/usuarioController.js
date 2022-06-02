@@ -8,6 +8,7 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
+    
     usuarioModel.listar()
         .then(function (resultado) {
             if (resultado.length > 0) {
