@@ -19,14 +19,13 @@ create table usuario(
 id int primary key auto_increment,
 nome varchar (45),
 email varchar(45),
+idade int,
 senha varchar(30),
-fkPerfil int default 2,
+fkPerfil int default 1,
 foreign key (fkPerfil) references perfil (idPerfil)
 );
 
              -- INSERT USUARIO
-insert into usuario values
-(null, 'João', 'joao@email.com', 1234, 1);
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 -- TABELA POST (POSTS, SUAS CURTIDAS, COMENTÁRIOS E DATA)
@@ -38,3 +37,4 @@ statusPost char default 0,
 fk_usuario int,
 foreign key (fk_usuario) references usuario(id)
 );
+select*from aviso;

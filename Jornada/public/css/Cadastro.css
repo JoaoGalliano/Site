@@ -23,7 +23,7 @@
   }
   
   .formulario .tipo_campo {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600 !important;
   }
   
@@ -41,6 +41,14 @@
     border-radius: 10px;
   }
   
+  #sel_tema{
+    margin-bottom: 10px;
+    border: 2px solid #260401;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+  }
   .btn {
     border: 0;
     border-radius: 5px;

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meu Site</title>
+    <title>Cadastro</title>
 
 
     <script src="./js/funcoes.js"></script>
@@ -30,7 +30,6 @@
                     <a href="./cadastro.html">Cadastro</a>
                 <li>
                     <a href="./Sobre.html">Sobre</a>
-                </li>
                 </li>
             </ul>
         </div>
@@ -59,6 +58,16 @@
 
                     <span class="tipo_campo">E-mail:</span>
                     <input id="email_input" type="text" placeholder="meuemail@provedor.com">
+
+                    <span class="tipo_campo">Tema:</span>
+                    <select class="tipo_campo" id="sel_idade">
+                        <option class="tipo_campo">Sua Faixa Etária</option>
+                        <option class="tipo_campo" value="12">Criança - Até 12 Anos</option>
+                        <option class="tipo_campo" value="17">Adolescente - Até 17 Anos</option>
+                        <option class="tipo_campo" value="29">Jovem Adulto - Até 29 Anos</option>
+                        <option class="tipo_campo" value="59">Adulto - Até 59 Anos</option>
+                        <option class="tipo_campo" value="60">Idoso - A partir de 60</option>
+                    </select>
 
                     <span class="tipo_campo">Senha:</span>
                     <input id="senha_input" type="password" placeholder="******">
@@ -92,10 +101,11 @@
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
+        var idadeVar = sel_idade.value
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        if (nomeVar == "" || emailVar == "" || idadeVar=="" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -117,7 +127,8 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                idadeServer: idadeVar
             })
         }).then(function (resposta) {
 

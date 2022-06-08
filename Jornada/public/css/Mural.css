@@ -8,3 +8,8 @@
     font-size: 22px;
     font-weight: 500;
 }
+
+#form_postagem label #titulo{
+align-items: flex-start;   
+text-align: left; 
+}
